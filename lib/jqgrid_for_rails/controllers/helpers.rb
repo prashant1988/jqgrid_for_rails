@@ -58,8 +58,8 @@ module JqgridForRails
       #
       def json_for_jqgrid records, columns = nil, options = {}
 
-        columns ||= (records[0].attributes.keys rescue [])
-
+        columns ||= (records[0].attributes.keys.compact rescue [])
+        # adding compact above line to remove nil and update for rails 4.1+ 
         options[:id_column] ||= columns.first
         options[:page]      ||= records.current_page
 
